@@ -20,10 +20,14 @@ enum BUTTON
 
 enum APP_STATE
 {
-    GAME = 0,
-    MENU = 1,
-    ANSWER = 2,
-    RETURN_TO_MENU = 3
+    GAME                = 0,
+    MENU                = 1,
+    ANSWER              = 2,
+    RETURN_TO_MENU      = 3,
+    ADD_NODE_ANSWER     = 4,
+    ADD_NODE_QUESTION   = 5,
+    LOADING_DB          = 6,
+    SAVING_DB           = 7
 };
 
 const int WINDOW_W = 1000;
@@ -31,6 +35,8 @@ const int WINDOW_H = 1000;
 
 const int BUTTON_W = 400;
 const int BUTTON_H = 100;
+
+const int MAX_STR_LEN = 256;
 
 struct button_t
 {
@@ -50,6 +56,8 @@ void start_session ( void );
 void yes           ( void );
 void no            ( void );
 void return_to_menu( void );
+void save_db       ( void );
+void load_db       ( void );
 void quit          ( void ) __attribute__((noreturn));
 
 void InitButtons( void );
@@ -62,11 +70,17 @@ void DrawButtons( void );
 int ButtonPressed( int x, int y );
 void DrawCenteredText( const char *str );
 void SkipMultiClick( void );
+int InputBox( int x, int y, int width, int height );
+void reset_buffer( void );
 
 void DrawApp         ( void );
 void DrawMenu        ( void );
 void DrawGame        ( void );
 void DrawReturnToMenu( void );
+void DrawAddAnswer   ( void );
+void DrawAddQuestion ( void );
+void DrawSavingDB    ( void );
+void DrawLoadingDB   ( void );
 void Draw            ( void );
 
 
