@@ -24,7 +24,7 @@ int main( void )
 
 
     root = create_node("Egorka d");
-    log_file_open("log.html");
+
     Menu();
 
 

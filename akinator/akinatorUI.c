@@ -1,5 +1,6 @@
 #include "akinator.h"
 
+
 extern tree_node_t *root;
 extern tree_node_t *current;
 
@@ -80,7 +81,10 @@ void DrawReturnToMenu( void )
     for (; i < 6; i++)
         buttons[i].is_active = 0;
     buttons[6].is_active = 1;
-    DrawCenteredText("Старый бог здесь");
+
+    char str[256] = {};
+    sprintf(str, "вы осеменили %s", current->value);
+    DrawCenteredText(str);
     DrawButtons();
 
     return;
@@ -247,7 +251,9 @@ int ButtonPressed( int x, int y )
     for (int i = 0; i < buttons_cnt; i++)
     {
         if (buttons[i].is_active && x > buttons[i].x && y > buttons[i].y && x < buttons[i].x + BUTTON_W && y < buttons[i].y + BUTTON_H)
+        {
             return i;
+        }
     }
 
     return -1;
@@ -278,11 +284,11 @@ void SkipMultiClick( void )
 int InputBox( int x, int y, int width, int height)
 {
     Rectangle text_box = {(float)x, (float)y, (float)width, (float)height};
-    int font_size = (int)(height * 0.4 + 2);
+    float font_size = (float)(height * 0.4 + 2);
     DrawRectangleRec(text_box, WHITE);
     char *draw_buffer = buffer;
     ;
-    while (MeasureTextEx(font, draw_buffer, font_size, 2).x > width)
+    while (MeasureTextEx(font, draw_buffer, font_size, 2).x > (float)width)
     {
         draw_buffer++;
         if ((*draw_buffer & 0xC0) == 0x80)

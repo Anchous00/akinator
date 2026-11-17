@@ -64,4 +64,3 @@ void log_file_close( void )
 
     return;
 }
-

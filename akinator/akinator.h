@@ -83,5 +83,7 @@ void DrawSavingDB    ( void );
 void DrawLoadingDB   ( void );
 void Draw            ( void );
 
+void speak( const char *str );
+void select_random_background( void );
 
 #endif
